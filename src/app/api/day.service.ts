@@ -5,7 +5,7 @@ import {HttpClient} from "@angular/common/http";
   providedIn: 'root'
 })
 export class DayService {
-  API='https://b2mapi.herokuapp.com/days/'
+  API='https://b2m.herokuapp.com/days/'
   constructor(private http: HttpClient) { }
   getDays(){
     return this.http.get(`${this.API}all`)

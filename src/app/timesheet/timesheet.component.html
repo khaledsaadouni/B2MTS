@@ -42,8 +42,7 @@
           <td style="color: black">{{t.task|titlecase}}  <i   class="bt btn-outline-danger btn-xs bi bi-trash pull-right" (click)="deleteTask(t.id)" style="border: none"></i>            </td>
           <td> {{gettotal(t.days)}}</td>
           <td style="color: black" *ngFor="let a of  [].constructor(days);index as u" (click)="openPopup3(u+1,t.id )">
-            <span *ngFor="let a of t.days"><span *ngIf="a.year==Cyear && a.month==Cmonth && a.day==u+1"
-                                                 (click)="daytask=a.id">{{a.coef}}</span></span></td>
+            <span *ngFor="let a of t.days"><span *ngIf="a.year==Cyear && a.month==Cmonth && a.day==u+1" (click)="daytask=a.id">{{a.coef}}</span></span></td>
 
 
         </tr>

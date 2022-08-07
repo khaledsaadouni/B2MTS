@@ -32,7 +32,7 @@
             Time Sheet
           </a>
         </li>
-        <li>
+        <li *ngIf="user.role!='dev'">
           <a class="sidea"  [routerLink]="['team']" routerLinkActive="act">
             <i class="bi bi-people-fill"></i>
             Team </a>

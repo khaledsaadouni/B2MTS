@@ -81,7 +81,15 @@ export class PorjectsComponent implements OnInit {
   }
 
   save(n, d, s, c) {
-    let p = new Projectapi(n, s, d, c);
+    let date=d
+    if(!date){
+      date="1899-11-30"
+    }
+    let state=s;
+    if(!state){
+      state="Pending"
+    }
+    let p = new Projectapi(n, state, date, c);
     this.ProjectApi.addProject(p, c).subscribe((res) => {
 
         location.reload();
@@ -108,7 +116,16 @@ export class PorjectsComponent implements OnInit {
 
   save2(n, d, s, c) {
 
-    let p = new Projectapi(n, s, d, '');
+
+    let date=d
+    if(!date){
+      date="1899-11-30"
+    }
+    let state=s;
+    if(!state){
+      state="Pending"
+    }
+    let p = new Projectapi(n, state, date, '');
     if(!c){
       c=-1;
     }
@@ -165,8 +182,8 @@ export class PorjectsComponent implements OnInit {
 
   }
 
-  save4(p, d, s) {
-    let t = new Taskapi(p, s)
+  save4(p, d,) {
+    let t = new Taskapi(p, "Pending")
     this.tasksapi.addTask(this.selectedProjectId, t, d).subscribe((re) => {
       location.reload()
     })

@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {Credapi} from "../model/credapi";
 import {Router} from "@angular/router";
 
-const API_LOGIN = 'https://b2mapi.herokuapp.com/user';
+const API_LOGIN = 'https://b2m.herokuapp.com/user';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +16,7 @@ export class AuthService {
 
   }
   register(u){
-    return this.http.post(API_LOGIN+'/signin',u)
+    return this.http.post(API_LOGIN+'/signuser',u)
 }
   getLoggedUser(e){
     return this.http.get(`${API_LOGIN}/${e}`);

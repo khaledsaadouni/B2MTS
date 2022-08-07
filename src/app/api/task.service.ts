@@ -5,7 +5,7 @@ import {HttpClient} from "@angular/common/http";
   providedIn: 'root'
 })
 export class TaskService {
-  API='https://b2mapi.herokuapp.com/task/'
+  API='https://b2m.herokuapp.com/task/'
   constructor(private http: HttpClient) { }
   getTasks(){
     return this.http.get(`${this.API}all`)

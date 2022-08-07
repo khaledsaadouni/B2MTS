@@ -159,6 +159,7 @@ export class TimesheetComponent implements OnInit {
   gettotal(d) {
     let s = 0
     for (const dElement of d) {
+      if(dElement.month==this.Cmonth && dElement.year==this.Cyear)
       s += dElement.coef
     }
     return s

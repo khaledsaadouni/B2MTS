@@ -318,16 +318,6 @@
         <div class="row" style="padding-top: 5px;padding-bottom: 10px">
           <div class="col">Task Name:</div>
           <div class="col"><input type="text" class="form-control" #task style="height: 30px"></div>
-        </div><div class="row" style="padding-top: 5px;padding-bottom: 10px">
-          <div class="col">Status:</div>
-        <div class="col">
-          <select #statet class="form-select " name="sate">
-            <option value="Pending">Pending</option>
-            <option value="Ongoing">Ongoing</option>
-            <option value="Done">Done</option>
-            <option value="Canceled">Canceled</option>
-          </select>
-        </div>
         </div>
         <div class="row" style="padding-top: 5px;padding-bottom: 10px">
           <div class="col">Assign Task To:</div>
@@ -340,7 +330,7 @@
 
         <div class="row" style="padding-top: 10px;">
           <div class="col" style="  display: flex; justify-content: center; align-items: center;">
-            <button class="btn btn-outline-dark" (click)="save4(task.value,dev.value,statet.value)"><i class="fa fa-check"
+            <button class="btn btn-outline-dark" (click)="save4(task.value,dev.value)"><i class="fa fa-check"
                                                                                 aria-hidden="true"></i>Save
             </button>
           </div>
