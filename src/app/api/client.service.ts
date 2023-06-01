@@ -5,7 +5,7 @@ import {HttpClient} from "@angular/common/http";
   providedIn: 'root'
 })
 export class ClientService {
-  API='https://b2m.herokuapp.com/client/'
+  API='http://localhost:3000/client/'
   constructor(private http: HttpClient) { }
   GetClients(){
     return this.http.get(`${this.API}all`)

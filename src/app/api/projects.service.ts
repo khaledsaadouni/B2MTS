@@ -6,7 +6,7 @@ import {Projectapi} from "../model/projectapi";
   providedIn: 'root'
 })
 export class ProjService {
-  API='https://b2m.herokuapp.com/project/'
+  API='http://localhost:3000/project/'
   constructor(private http: HttpClient) { }
   getProjects(){
     return this.http.get(`${this.API}all`)

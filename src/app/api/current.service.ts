@@ -6,7 +6,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class CurrentService {
 
-  API='https://b2m.herokuapp.com/current/'
+  API='http://localhost:3000/current/'
   constructor(private http: HttpClient) { }
   getTasks(id){
     return this.http.get(`${this.API}all/${id}`)
