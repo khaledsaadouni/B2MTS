@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {TaskService} from "../api/task.service";
-import {ProjService} from "../api/projects.service";
-import {ClientService} from "../api/client.service";
-import {DayService} from "../api/day.service";
-import {moveItemInArray} from "@angular/cdk/drag-drop";
-import {Taskapi} from "../model/taskapi";
-import {Cleintapi} from "../model/cleintapi";
-import {Router} from "@angular/router";
-import {AuthService} from "../api/auth.service";
+import { Component, OnInit } from '@angular/core';
+import { TaskService } from "../api/task.service";
+import { ProjService } from "../api/projects.service";
+import { ClientService } from "../api/client.service";
+import { DayService } from "../api/day.service";
+import { moveItemInArray } from "@angular/cdk/drag-drop";
+import { Taskapi } from "../model/taskapi";
+import { Cleintapi } from "../model/cleintapi";
+import { Router } from "@angular/router";
+import { AuthService } from "../api/auth.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -41,14 +41,14 @@ export class DashboardComponent implements OnInit {
   }
 
   gettotal(d) {
-    let s = 0
+    /*let s = 0
     for (const dElement of d) {
       for (let i of dElement.days) {
         s += i.coef
       }
 
     }
-    return s
+    return s*/
   }
 
 

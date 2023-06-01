@@ -1,16 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {ProjectsService} from "../projects.service";
-import {moveItemInArray} from "@angular/cdk/drag-drop";
+import { Component, OnInit } from '@angular/core';
+import { ProjectsService } from "../projects.service";
+import { moveItemInArray } from "@angular/cdk/drag-drop";
 
-import {LoginService} from "../login.service";
-import {ProjService} from "../api/projects.service";
+import { LoginService } from "../login.service";
+import { ProjService } from "../api/projects.service";
 
-import {Router} from "@angular/router";
-import {Projectapi} from "../model/projectapi";
-import {TaskService} from "../api/task.service";
-import {Taskapi} from "../model/taskapi";
-import {ClientService} from "../api/client.service";
-import {AuthService} from "../api/auth.service";
+import { Router } from "@angular/router";
+import { Projectapi } from "../model/projectapi";
+import { TaskService } from "../api/task.service";
+import { Taskapi } from "../model/taskapi";
+import { ClientService } from "../api/client.service";
+import { AuthService } from "../api/auth.service";
 
 @Component({
   selector: 'app-porjects',
@@ -50,7 +50,9 @@ export class PorjectsComponent implements OnInit {
     this.projects = this.projectser.addtasks();
     this.ProjectApi.getProjects().subscribe((res) => {
       this.list = res
+      console.log(this.list);
     })
+    console.log(this.list);
     for (let i = 0; i < this.projects.length; i++) {
       this.click.push(false)
     }
@@ -68,9 +70,9 @@ export class PorjectsComponent implements OnInit {
     moveItemInArray(this.cuser.tasks, event.previousIndex, event.currentIndex);
   }
 
-  dl= new Date("1899-11-30")
+  dl = new Date("1899-11-30")
 
-//model1
+  //model1
   blure = false;
   displayStyle = "none";
 
@@ -81,19 +83,19 @@ export class PorjectsComponent implements OnInit {
   }
 
   save(n, d, s, c) {
-    let date=d
-    if(!date){
-      date="1899-11-30"
+    let date = d
+    if (!date) {
+      date = "1899-11-30"
     }
-    let state=s;
-    if(!state){
-      state="Pending"
+    let state = s;
+    if (!state) {
+      state = "Pending"
     }
     let p = new Projectapi(n, state, date, c);
     this.ProjectApi.addProject(p, c).subscribe((res) => {
 
-        location.reload();
-      }
+      location.reload();
+    }
     )
     this.closePopup();
   }
@@ -104,7 +106,7 @@ export class PorjectsComponent implements OnInit {
   }
 
 
-//model2
+  //model2
   displayStyle2 = "none";
 
   openPopup2(p) {
@@ -117,22 +119,22 @@ export class PorjectsComponent implements OnInit {
   save2(n, d, s, c) {
 
 
-    let date=d
-    if(!date){
-      date="1899-11-30"
+    let date = d
+    if (!date) {
+      date = "1899-11-30"
     }
-    let state=s;
-    if(!state){
-      state="Pending"
+    let state = s;
+    if (!state) {
+      state = "Pending"
     }
     let p = new Projectapi(n, state, date, '');
-    if(!c){
-      c=-1;
+    if (!c) {
+      c = -1;
     }
     this.ProjectApi.updateProject(this.SProj.id, p, c).subscribe((res) => {
 
-        location.reload();
-      }
+      location.reload();
+    }
     )
     this.closePopup2();
   }
@@ -143,7 +145,7 @@ export class PorjectsComponent implements OnInit {
   }
 
 
-//model3
+  //model3
   displayStyle3 = "none";
   pindex;
 
@@ -171,7 +173,7 @@ export class PorjectsComponent implements OnInit {
 
   }
 
-//model4
+  //model4
 
   displayStyle4 = "none";
 
@@ -197,7 +199,7 @@ export class PorjectsComponent implements OnInit {
     this.selectedProjectId = null;
   }
 
-//model5
+  //model5
   displayStyle5 = "none";
 
   openPopup5(t) {
@@ -228,7 +230,7 @@ export class PorjectsComponent implements OnInit {
     })
   }
 
-//model6
+  //model6
   displayStyle6 = "none";
 
   openPopup6(t) {

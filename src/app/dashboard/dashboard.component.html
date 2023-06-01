@@ -1,65 +1,65 @@
 <div class="container-fluid" [ngClass]="{'bluring': blure}">
-  <div class="row">
-    <div class="col-lg-8 p-r-0 title-margin-right">
-      <div class="page-header">
-        <div class="page-title">
-          <h1><span style="font-size: x-large">Welcome To Your B2M Dashboard</span></h1>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- /# row -->
-  <section id="main-content"  >
     <div class="row">
-      <div class="col-lg-3" *ngIf="!(cuser.role=='dev')">
-        <div class="card">
-          <div class="stat-widget-one">
-            <div class="stat-icon dib"><i class="bi bi-files color-info"></i>
+        <div class="col-lg-8 p-r-0 title-margin-right">
+            <div class="page-header">
+                <div class="page-title">
+                    <h1><span style="font-size: x-large">Welcome To Your B2M Dashboard</span></h1>
+                </div>
             </div>
-            <div class="stat-content dib">
-              <div class="stat-text">Total Projects</div>
-              <div class="stat-digit">  {{projects.length}} </div>
-            </div>
-          </div>
         </div>
-      </div>
-      <div class="col-lg-3" *ngIf="!(cuser.role=='dev')">
-        <div class="card">
-          <div class="stat-widget-one">
-            <div class="stat-icon dib" style="font-size: small"><i class=" color-success bi bi-card-checklist"></i>
+    </div>
+    <!-- /# row -->
+    <section id="main-content">
+        <div class="row">
+            <div class="col-lg-4" *ngIf="!(cuser.role=='dev')">
+                <div class="card">
+                    <div class="stat-widget-one">
+                        <div class="stat-icon dib"><i class="bi bi-files color-info"></i>
+                        </div>
+                        <div class="stat-content dib">
+                            <div class="stat-text">Total Projects</div>
+                            <div class="stat-digit"> {{projects.length}} </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="stat-content dib">
-              <div class="stat-text">Total Tasks</div>
-              <div class="stat-digit">  {{tasks.length}} </div>
+            <div class="col-lg-4" *ngIf="!(cuser.role=='dev')">
+                <div class="card">
+                    <div class="stat-widget-one">
+                        <div class="stat-icon dib" style="font-size: small"><i class=" color-success bi bi-card-checklist"></i>
+                        </div>
+                        <div class="stat-content dib">
+                            <div class="stat-text">Total Tasks</div>
+                            <div class="stat-digit"> {{tasks.length}} </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3" *ngIf="cuser.role=='dev'">
-        <div class="card">
-          <div class="stat-widget-one">
-            <div class="stat-icon dib" style="font-size: small"><i class=" color-success bi bi-card-checklist"></i>
+            <div class="col-lg-4" *ngIf="cuser.role=='dev'">
+                <div class="card">
+                    <div class="stat-widget-one">
+                        <div class="stat-icon dib" style="font-size: small"><i class=" color-success bi bi-card-checklist"></i>
+                        </div>
+                        <div class="stat-content dib">
+                            <div class="stat-text">Total Tasks</div>
+                            <div class="stat-digit"> {{cuser.tasks.length}} </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="stat-content dib">
-              <div class="stat-text">Total Tasks</div>
-              <div class="stat-digit">  {{cuser.tasks.length}} </div>
+            <div class="col-lg-4" *ngIf="!(cuser.role=='dev')">
+                <div class="card">
+                    <div class="stat-widget-one">
+                        <div class="stat-icon dib"><i class="bi bi-person color-pink  "></i>
+                        </div>
+                        <div class="stat-content dib">
+                            <div class="stat-text">Clients</div>
+                            <div class="stat-digit"> {{clients.length}} </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3"  *ngIf="!(cuser.role=='dev')">
-        <div class="card">
-          <div class="stat-widget-one">
-            <div class="stat-icon dib"><i class="bi bi-person color-pink  "></i>
-            </div>
-            <div class="stat-content dib">
-              <div class="stat-text">Clients</div>
-              <div class="stat-digit">  {{clients.length}} </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3" *ngIf="!(cuser.role=='dev')">
+            <!--<div class="col-lg-3" *ngIf="!(cuser.role=='dev')">
         <div class="card">
           <div class="stat-widget-one">
             <div class="stat-icon dib"><i class="bi bi-clock color-danger "></i></div>
@@ -80,174 +80,163 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <!-- /# column -->
-      <div class="col-lg-6">
-        <div class="card">
-          <div class="card-title">
-            <h4>Tasks</h4>
+      </div>-->
+        </div>
+        <div class="row">
+            <!-- /# column -->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-title">
+                        <h4>Tasks</h4>
 
-          </div>
-          <div class="todo-list">
-            <div class="tdl-holder">
-              <div class="tdl-content" >
-                <ul (cdkDropListDropped)="drop($event)" cdkDropList>
-                  <li *ngFor="let t of cuser.tasks" cdkDrag class="example-box ">
-                    <label>
+                    </div>
+                    <div class="todo-list">
+                        <div class="tdl-holder">
+                            <div class="tdl-content">
+                                <ul (cdkDropListDropped)="drop($event)" cdkDropList>
+                                    <li *ngFor="let t of cuser.tasks" cdkDrag class="example-box ">
+                                        <label>
                       <input type="checkbox" (click)="DeleteTask(t.id)"><i></i><span
                       style="color: black">{{t.task|titlecase}}</span>
 
                     </label>
-                  </li>
+                                    </li>
 
-                </ul>
-              </div>
-              <input #task type="text" class="tdl-new form-control" (keyup.enter)="AddTask(task.value)"
-                     placeholder="Write new item and hit 'Enter'...">
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- /# column -->
-      <div class="col-lg-6" *ngIf="cuser.role=='admin' || cuser.role=='manager'">
-        <div class="card">
-          <div class="card-title">
-            <h4>Projects Timeline</h4>
-
-
-          </div>
-          <div class="card-body">
-            <ul class="timeline">
-              <li>
-              <li *ngFor="let p of projects">
-                <div class="tbadge " [ngClass]="p.state">
-                  <i *ngIf="p.state=='Pending'" class="bi bi-clock"></i>
-                  <i *ngIf="p.state=='Ongoing'" class="bi bi-code-slash"></i>
-                  <i *ngIf="p.state=='Done'" class="bi bi-check2-circle"></i>
-                  <i *ngIf="p.state=='Canceled'" class="bi bi-x-circle"></i>
+                                </ul>
+                            </div>
+                            <input #task type="text" class="tdl-new form-control" (keyup.enter)="AddTask(task.value)" placeholder="Write new item and hit 'Enter'...">
+                        </div>
+                    </div>
                 </div>
-                <div class="timeline-panel">
-                  <div class="timeline-heading">
-                    <h5 class="timeline-title"> {{p.name}}</h5>
-                  </div>
-                  <div class="timeline-body">
-                    <p>Added On: {{p.CreatedAt| date: 'dd/MM/yyyy'}} </p>
-                  </div>
+            </div>
+            <!-- /# column -->
+            <div class="col-lg-6" *ngIf="cuser.role=='admin' || cuser.role=='manager'">
+                <div class="card">
+                    <div class="card-title">
+                        <h4>Projects Timeline</h4>
+
+
+                    </div>
+                    <div class="card-body">
+                        <ul class="timeline">
+                            <li>
+                                <li *ngFor="let p of projects">
+                                    <div class="tbadge " [ngClass]="p.state">
+                                        <i *ngIf="p.state=='Pending'" class="bi bi-clock"></i>
+                                        <i *ngIf="p.state=='Ongoing'" class="bi bi-code-slash"></i>
+                                        <i *ngIf="p.state=='Done'" class="bi bi-check2-circle"></i>
+                                        <i *ngIf="p.state=='Canceled'" class="bi bi-x-circle"></i>
+                                    </div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h5 class="timeline-title"> {{p.name}}</h5>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p>Added On: {{p.CreatedAt| date: 'dd/MM/yyyy'}} </p>
+                                        </div>
+                                    </div>
+                                </li>
+
+                        </ul>
+                    </div>
                 </div>
-              </li>
-
-            </ul>
-          </div>
-        </div>
-        <!-- /# card -->
-      </div>
-    </div>
-    <!-- /# row -->
-
-    <div class="row" *ngIf="!(cuser.role=='dev')">
-
-      <div class="col ">
-        <div class="card">
-          <div class="card-title pr">
-            <h4>Clients</h4>
-            <div class="pull-right row">
-              <div class="col" style="padding-top: 3px">
-                <button class="btn btn-outline-dark btn-sm pull-left"  (click)="openPopup()">Add New Client</button>
-              </div>
+                <!-- /# card -->
             </div>
-          </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table student-data-table m-t-20">
-                <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Phone Number</th>
-                  <th></th>
-                </tr>
-                </thead>
-                <tbody style="font-size: large">
-
-                <tr *ngFor="let c of clients">
-                  <td>{{c.name|titlecase}}</td>
-
-
-                  <td>
-                    {{c.email}}
-                  </td>
-
-                  <td>
-                    {{c.phone}}
-                  </td>
-<td> <button (click)="deleteClient(c.id)"  class="btn btn-outline-danger btn-xs bi bi-trash"
-             style=" margin-left: 10px;margin-right: 10px;border: none"></button></td>
-                </tr>
-
-                </tbody>
-              </table>
-            </div>
-          </div>
         </div>
-      </div>
-      <!-- /# column -->
-    </div>
+        <!-- /# row -->
+
+        <div class="row" *ngIf="!(cuser.role=='dev')">
+            <div class="col ">
+                <div class="card">
+                    <div class="card-title pr">
+                        <h4>Clients</h4>
+                        <div class="pull-right row">
+                            <div class="col" style="padding-top: 3px">
+                                <button class="btn btn-outline-dark btn-sm pull-left" (click)="openPopup()">Add New Client</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table student-data-table m-t-20">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone Number</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody style="font-size: large">
+
+                                    <tr *ngFor="let c of clients">
+                                        <td>{{c.name|titlecase}}</td>
 
 
-  </section>
+                                        <td>
+                                            {{c.email}}
+                                        </td>
+
+                                        <td>
+                                            {{c.phone}}
+                                        </td>
+                                        <td> <button (click)="deleteClient(c.id)" class="btn btn-outline-danger btn-xs bi bi-trash" style=" margin-left: 10px;margin-right: 10px;border: none"></button></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /# column -->
+        </div>
+
+
+    </section>
 </div>
 
 
-<div
-  class="pop"
-  tabindex="-1"
-  role="dialog"
+<div class="pop" tabindex="-1" role="dialog" style="padding-bottom: 200px" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog" role="document" style=" box-shadow: 0  15px 20px 0  rgba(0, 0, 0, 0.5); border-radius: 1rem">
+        <div class="modal-content">
 
-  style="padding-bottom: 200px"
-  [ngStyle]="{'display':displayStyle}">
-  <div class="modal-dialog" role="document"
-       style=" box-shadow: 0  15px 20px 0  rgba(0, 0, 0, 0.5); border-radius: 1rem">
-    <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <h1><i class="bi bi-person-circle"></i> New Client </h1>
+                    </div>
+                </div>
+                <form #projform="ngForm">
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col"> Client Name:</div>
+                        <div class="col"><input ngModel required type="text" name="name" class="form-control" #name='ngModel' style="height: 30px"></div>
+                    </div>
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col"> Client Email:</div>
+                        <div class="col"><input ngModel required type="email" name="DL" class="form-control" #email='ngModel' style="height: 30px"></div>
+                    </div>
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col"> Client Phone:</div>
+                        <div class="col"><input ngModel required type="number" name="phone" class="form-control" #num='ngModel' style="height: 30px"></div>
+                    </div>
 
-      <div class="modal-body">
-        <div class="row">
-          <div class="col">
-            <h1><i class="bi bi-person-circle"></i>
-              New Client </h1></div>
-        </div>
-        <form #projform="ngForm">
-          <div class="row" style="padding-top: 20px;">
-            <div class="col"> Client Name:</div>
-            <div class="col"><input ngModel required type="text" name="name" class="form-control" #name='ngModel' style="height: 30px"></div>
-          </div>
-          <div class="row" style="padding-top: 20px;">
-            <div class="col"> Client Email:</div>
-            <div class="col"><input ngModel required type="email" name="DL" class="form-control" #email='ngModel' style="height: 30px"></div>
-          </div>
-          <div class="row" style="padding-top: 20px;">
-            <div class="col"> Client Phone:</div>
-            <div class="col"><input ngModel required type="number"   name="phone" class="form-control" #num='ngModel' style="height: 30px"></div>
-          </div>
-
-          <div class="row" style="padding-top: 20px;">
-            <div class="col" style="  display: flex; justify-content: center; align-items: center;">
-              <button [disabled]="email.invalid || num.invalid || name.invalid " class="btn btn-outline-dark" (click)="save(name.value,email.value,num.value)"><i
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col" style="  display: flex; justify-content: center; align-items: center;">
+                            <button [disabled]="email.invalid || num.invalid || name.invalid " class="btn btn-outline-dark" (click)="save(name.value,email.value,num.value)"><i
                 class="fa fa-check"
                 aria-hidden="true"></i> Save
               </button>
-            </div>
-            <div class="col" style="  display: flex;  justify-content: center;align-items: center;">
-              <button type="button" class="btn btn-outline-danger"
-                      (click)="closePopup()">
+                        </div>
+                        <div class="col" style="  display: flex;  justify-content: center;align-items: center;">
+                            <button type="button" class="btn btn-outline-danger" (click)="closePopup()">
                 <i class="fa fa-times" aria-hidden="true"></i> Cancel
               </button>
-            </div>
-          </div>
-        </form>
+                        </div>
+                    </div>
+                </form>
 
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

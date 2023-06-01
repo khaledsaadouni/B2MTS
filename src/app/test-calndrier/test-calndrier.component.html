@@ -1,0 +1,162 @@
+<full-calendar style="width: 100%;" [options]="calendarOptions"></full-calendar>
+<!-- Click on event to see the details !!! -->
+<div class="pop" tabindex="-1" role="dialog" style="padding-bottom: 200px" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog" role="document" style=" box-shadow: 0  15px 20px 0  rgba(0, 0, 0, 0.5); border-radius: 1rem">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <h1><i class="fa fa-file-o" aria-hidden="false"></i> Task_Id :{{this.id}}</h1>
+                    </div>
+                    <div class="col" style="padding-left:33%">
+                        <button (click)="deletetasskk(this.id)" class="btn btn-outline-danger btn-xs bi bi-trash" style="margin-right: 1px;border: none;border:2px solid rgb(209, 1, 1);"></button>
+                        <button (click)="Onclikupdatetasskk(this.id)" class="btn btn-outline-dark btn-xsbi bi bi-pencil" style=" margin-left: 5px;border: none ;border:2px solid black;"></button>
+                    </div>
+                </div>
+                <form #projform="ngForm">
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col" style="text-decoration:underline;"> Project Description: </div>
+                        <div class="col"> {{this.title}}</div>
+                    </div>
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col" style="text-decoration:underline;"> the task is for : </div>
+                        <div class="col"> {{this.datedebut}}</div>
+                    </div>
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col" style="text-decoration:underline;"> End Date and Time : </div>
+                        <div class="col"> {{this.datefin}}</div>
+                    </div>
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col" style="text-decoration:underline;"> Task Duration : </div>
+                        <div class="col"> {{this.dure}}</div>
+                    </div>
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col" style="text-decoration:underline;"> Task state : </div>
+                        <div class="col"> {{this.taskstate}}</div>
+                    </div>
+
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col" style="  display: flex; justify-content: center; align-items: center;">
+                        </div>
+                        <div class="col" style="  display: flex;  justify-content: center;align-items: center;">
+                            <button type="button" class="btn btn-outline-danger" (click)="closePopup1()"><i class="fa fa-times" aria-hidden="true"></i> Cancel</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Click on event to see the details !!! -->
+
+
+<!-- Click on time to add event !!! -->
+<div class="pop" tabindex="-1" role="dialog" style="padding-bottom: 200px" [ngStyle]="{'display':displayStyle2}">
+    <div class="modal-dialog" role="document" style=" box-shadow: 0  15px 20px 0  rgba(0, 0, 0, 0.5); border-radius: 1rem">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <h1><i class="fa fa-file-o" aria-hidden="false"></i> Add a Task in this timesheet:{{this.id}}</h1>
+                    </div>
+                </div>
+                <form #projform="ngForm">
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col" style="text-decoration:underline;"> Task Begin on :</div>
+                        <div class="col"> {{this.infoDate}} </div>
+                    </div>
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col" style="text-decoration:underline;"> At time :</div>
+                        <div class="col"> {{this.infoTime}} </div>
+                    </div>
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col" style="text-decoration:underline;"> Choose End time :</div>
+                        <div class="col">
+                            <input type="time" class="form-control" #endtime>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col" style="text-decoration:underline;">Choose Task :</div>
+                        <div class="col">
+                            <select #task class="form-select " name="sate">
+                                <option [value]="-1"> </option>
+                                <option   *ngFor="let c of this.tasks " [value]="c.id">{{c.task}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col" style="  display: flex; justify-content: center; align-items: center;">
+                            <button type="submit" class="btn btn-outline-dark" (click)="savetask(this.info,endtime.value,task.value)"><i
+                            class="fa fa-check"
+                            aria-hidden="true" ></i> Add</button>
+                        </div>
+                        <div class="col" style="  display: flex;  justify-content: center;align-items: center;">
+                            <button type="button" class="btn btn-outline-danger" (click)="closePopup2()">
+                            <i class="fa fa-times" aria-hidden="true"></i> Cancel
+                        </button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Click on time to add event !!! -->
+<!-- update event !!!!!!!!!! !!! -->
+<div class="pop" tabindex="-1" role="dialog" style="padding-bottom: 200px" [ngStyle]="{'display':displayStyle3 }">
+    <div class="modal-dialog" role="document" style=" box-shadow: 0  15px 20px 0  rgba(0, 0, 0, 0.5); border-radius: 1rem">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <h1><i class="fa fa-file-o" aria-hidden="false"></i> Update the task information:{{this.id}}</h1>
+                    </div>
+                </div>
+                <form #projform="ngForm">
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col" style="text-decoration:underline;"> Choose Start time :</div>
+                        <div class="col">
+                            <input type="time" class="form-control" #starttime>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col" style="text-decoration:underline;"> Choose Start time :</div>
+                        <div class="col">
+                            <input type="time" class="form-control" #endtime2>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col" style="text-decoration:underline;">Choose Task :</div>
+                        <div class="col">
+                            <select #task2 class="form-select " name="sate">
+                                <option [value]="-1"> </option>
+                                <option   *ngFor="let c of this.tasks " [value]="c.id">{{c.task}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col" style="  display: flex; justify-content: center; align-items: center;">
+                            <button type="submit" class="btn btn-outline-dark" (click)="updateTask(this.id,starttime.value,endtime2.value,task2.value)"><i
+                            class="fa fa-check"
+                            aria-hidden="true" ></i> Update</button>
+                        </div>
+                        <div class="col" style="  display: flex;  justify-content: center;align-items: center;">
+                            <button type="button" class="btn btn-outline-danger" (click)="closePopup3()">
+                            <i class="fa fa-times" aria-hidden="true"></i> Cancel
+                        </button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- update event !!!!!!!!!! !!! -->

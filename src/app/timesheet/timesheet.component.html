@@ -1,204 +1,182 @@
 <div class="card" [ngClass]="{'bluring': blure}" style="height: 100%;background: #f5f5f5;border: none">
-  <div style=" padding-top: 30px">
+    <div style=" padding-top: 30px">
 
 
-    <div class="row" style="margin-left:100px; margin-right: 100px;padding-bottom: 25px;padding-top:20px">
+        <div class="row" style="margin-left:100px; margin-right: 100px;padding-bottom: 25px;padding-top:20px">
 
-      <div class="col-md-5"><h1 style="text-align: right;color: #394851;text-shadow:  2px  2px lightgrey">Time Sheet
-        Of </h1>
-      </div>
-      <div class="col-md-6 ">
+            <div class="col-md-5">
+                <h1 style="text-align: right;color: #394851;text-shadow:  2px  2px lightgrey">Time Sheet Of </h1>
+            </div>
+            <div class="col-md-6 ">
 
-        <input #innn type="month" class="form-control" (change)="alert(innn.value)" [ngModel]="inputdate">
+                <input #innn type="month" class="form-control" (change)="alert(innn.value)" [ngModel]="inputdate">
 
-      </div>
+            </div>
+        </div>
+        <div class=" container">
+
+
+            <table class="table table-bordered " style="text-align: center; background: white ; box-shadow: 0  15px 20px 0  rgba(0, 0, 0, 0.5);">
+                <thead>
+
+
+                    <tr>
+                        <td> Project</td>
+                        <td> Task
+                            <button *ngIf="user.role=='dev'" class="btn btn-outline-dark btn-sm pull-right bi bi-plus-circle" style=" border: none" (click)="openPopup()"></button>
+
+                            <button *ngIf="!(user.role=='dev')" class="btn btn-outline-dark btn-sm pull-right bi bi-plus-circle" style=" border: none" (click)="openPopup2()"></button>
+                        </td>
+                        <td>Total</td>
+                        <td *ngFor="let a of [].constructor(days);index as i">{{i + 1}} </td>
+
+                    </tr>
+                </thead>
+                <tbody style="border: lightgrey">
+
+
+                    <tr *ngFor="let t of cur.tasks">
+                        <td> <span *ngFor="let p of list"> <span *ngFor="let ta of p.tasks"> <span *ngIf="ta.id==t.id" style="color: darkgrey;font-size: small"> {{p.name|titlecase}}</span> </span>
+                            </span>
+                        </td>
+                        <td style="color: black">{{t.task|titlecase}} <i class="bt btn-outline-danger btn-xs bi bi-trash pull-right" (click)="deleteTask(t.id)" style="border: none"></i> </td>
+                        <td> {{gettotal(t.days)}}</td>
+                        <td style="color: black" *ngFor="let a of  [].constructor(days);index as u" (click)="openPopup3(u+1,t.id )">
+                            <span *ngFor="let a of t.days"><span *ngIf="a.year==Cyear && a.month==Cmonth && a.day==u+1" (click)="daytask=a.id">{{a.coef}}</span></span>
+                        </td>
+
+
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div class=" container">
-
-
-      <table class="table table-bordered "
-             style="text-align: center; background: white ; box-shadow: 0  15px 20px 0  rgba(0, 0, 0, 0.5);">
-        <thead>
-
-
-        <tr>
-          <td> Project</td>
-          <td> Task
-            <button *ngIf="user.role=='dev'" class="btn btn-outline-dark btn-sm pull-right bi bi-plus-circle"    style=" border: none" (click)="openPopup()"></button>
-
-            <button *ngIf="!(user.role=='dev')" class="btn btn-outline-dark btn-sm pull-right bi bi-plus-circle"    style=" border: none" (click)="openPopup2()"></button>
-          </td>
-          <td>Total</td>
-          <td *ngFor="let a of [].constructor(days);index as i">{{i + 1}} </td>
-
-        </tr>
-        </thead>
-        <tbody style="border: lightgrey" >
-
-
-        <tr *ngFor="let t of cur.tasks">
-          <td> <span *ngFor="let p of list"> <span *ngFor="let ta of p.tasks"> <span *ngIf="ta.id==t.id" style="color: darkgrey;font-size: small"> {{p.name|titlecase}}</span> </span> </span>
-          </td>
-          <td style="color: black">{{t.task|titlecase}}  <i   class="bt btn-outline-danger btn-xs bi bi-trash pull-right" (click)="deleteTask(t.id)" style="border: none"></i>            </td>
-          <td> {{gettotal(t.days)}}</td>
-          <td style="color: black" *ngFor="let a of  [].constructor(days);index as u" (click)="openPopup3(u+1,t.id )">
-            <span *ngFor="let a of t.days"><span *ngIf="a.year==Cyear && a.month==Cmonth && a.day==u+1" (click)="daytask=a.id">{{a.coef}}</span></span></td>
-
-
-        </tr>
-
-
-        </tbody>
-      </table>
-    </div>
-  </div>
 </div>
 
 
-<div
-  class="pop"
-  style="padding-bottom: 300px;"
-  tabindex="-1"
-  role="dialog"
-  [ngStyle]="{'display':displayStyle3}">
-  <div class="modal-dialog" role="document"
-       style=" box-shadow: 0  15px 20px 0  rgba(0, 0, 0, 0.5); border-radius: 1rem">
-    <div class="modal-content">
+<div class="pop" style="padding-bottom: 300px;" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle3}">
+    <div class="modal-dialog" role="document" style=" box-shadow: 0  15px 20px 0  rgba(0, 0, 0, 0.5); border-radius: 1rem">
+        <div class="modal-content">
 
-      <div class="modal-body">
-        <div class="row">
-          <div class="col">
-            <i class="fa fa-clock-o fa-lg" aria-hidden="true"></i> Hours on {{localday}}/{{Cmonth }}:
-          </div>
-          <div class="col">
-            <div class="col"><select class="form-select " (ngModelChange)="setCoef($event)" [ngModel]="Cyear">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <i class="fa fa-clock-o fa-lg" aria-hidden="true"></i> Hours on {{localday}}/{{Cmonth }}:
+                    </div>
+                    <div class="col">
+                        <div class="col"><select class="form-select " (ngModelChange)="setCoef($event)" [ngModel]="Cyear">
               <option value="0.25">0.25</option>
               <option value="0.5">0.5</option>
               <option value="0.75">0.75</option>
               <option value="1">1</option>
             </select>
-            </div>
-          </div>
-        </div>
-        <div class="row" style="padding-top: 10px;">
-          <div class="col" style="  display: flex; justify-content: center; align-items: center;">
-            <button class="btn btn-outline-dark btn-xs bi bi-check-lg" (click)="save3(1)"> Save
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding-top: 10px;">
+                    <div class="col" style="  display: flex; justify-content: center; align-items: center;">
+                        <button class="btn btn-outline-dark btn-xs bi bi-check-lg" (click)="save3(1)"> Save
             </button>
-          </div>
-          <div class="col" style="  display: flex; justify-content: center; align-items: center;">
-            <button class="btn btn-outline-danger btn-xs bi bi-trash" (click)="save3(0)"> Delete
+                    </div>
+                    <div class="col" style="  display: flex; justify-content: center; align-items: center;">
+                        <button class="btn btn-outline-danger btn-xs bi bi-trash" (click)="save3(0)"> Delete
             </button>
-          </div>
-          <div class="col" style="  display: flex; justify-content: center; align-items: center;">
-            <button type="button" class="btn btn-outline-danger"
-                    (click)="closePopup3()">
+                    </div>
+                    <div class="col" style="  display: flex; justify-content: center; align-items: center;">
+                        <button type="button" class="btn btn-outline-danger" (click)="closePopup3()">
               <i class="fa fa-times" aria-hidden="true"></i> Cancel
             </button>
-          </div>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
-
-
-      </div>
     </div>
-  </div>
 </div>
 
 
 
-<div
-  class="pop"
-  tabindex="-1"
-  role="dialog"
+<div class="pop" tabindex="-1" role="dialog" style="padding-bottom: 200px" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog" role="document" style=" box-shadow: 0  15px 20px 0  rgba(0, 0, 0, 0.5); border-radius: 1rem">
+        <div class="modal-content">
 
-  style="padding-bottom: 200px"
-  [ngStyle]="{'display':displayStyle}">
-  <div class="modal-dialog" role="document"
-       style=" box-shadow: 0  15px 20px 0  rgba(0, 0, 0, 0.5); border-radius: 1rem">
-    <div class="modal-content">
-
-      <div class="modal-body">
-        <div class="row">
-          <div class="col">
-            <h1><i class="fa fa-file-o" aria-hidden="false"></i>
-             Add Task </h1></div>
-        </div>
-        <form #projform="ngForm">
-          <div class="row" style="padding-top: 20px;">
-            <div class="col"> Task:</div>
-            <div class="col">
-              <select  #task class="form-select " name="sate" >
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <h1><i class="fa fa-file-o" aria-hidden="false"></i> Add Task </h1>
+                    </div>
+                </div>
+                <form #projform="ngForm">
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col"> Task:</div>
+                        <div class="col">
+                            <select #task class="form-select " name="sate">
                 <option [value]="-1"> </option>
                 <option   *ngFor="let c of user.tasks " [value]="c.id">{{c.task}}</option>
 
               </select>
-            </div>
-          </div>
-          <div class="row" style="padding-top: 20px;">
-            <div class="col" style="  display: flex; justify-content: center; align-items: center;">
-              <button class="btn btn-outline-dark" (click)="save(task.value)"><i
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col" style="  display: flex; justify-content: center; align-items: center;">
+                            <button class="btn btn-outline-dark" (click)="save(task.value)"><i
                 class="fa fa-check"
                 aria-hidden="true"></i> Add
               </button>
-            </div>
-            <div class="col" style="  display: flex;  justify-content: center;align-items: center;">
-              <button type="button" class="btn btn-outline-danger"
-                      (click)="closePopup()">
+                        </div>
+                        <div class="col" style="  display: flex;  justify-content: center;align-items: center;">
+                            <button type="button" class="btn btn-outline-danger" (click)="closePopup()">
                 <i class="fa fa-times" aria-hidden="true"></i> Cancel
               </button>
-            </div>
-          </div>
-        </form>
+                        </div>
+                    </div>
+                </form>
 
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
-<div
-  class="pop"
-  tabindex="-1"
-  role="dialog"
+<div class="pop" tabindex="-1" role="dialog" style="padding-bottom: 200px" [ngStyle]="{'display':displayStyle2}">
+    <div class="modal-dialog" role="document" style=" box-shadow: 0  15px 20px 0  rgba(0, 0, 0, 0.5); border-radius: 1rem">
+        <div class="modal-content">
 
-  style="padding-bottom: 200px"
-  [ngStyle]="{'display':displayStyle2}">
-  <div class="modal-dialog" role="document"
-       style=" box-shadow: 0  15px 20px 0  rgba(0, 0, 0, 0.5); border-radius: 1rem">
-    <div class="modal-content">
-
-      <div class="modal-body">
-        <div class="row">
-          <div class="col">
-            <h1><i class="fa fa-file-o" aria-hidden="false"></i>
-             Add Task </h1></div>
-        </div>
-        <form #projform="ngForm">
-          <div class="row" style="padding-top: 20px;">
-            <div class="col"> Task:</div>
-            <div class="col">
-              <select  #taska class="form-select " name="sate" >
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <h1><i class="fa fa-file-o" aria-hidden="false"></i> Add Task </h1>
+                    </div>
+                </div>
+                <form #projform="ngForm">
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col"> Task:</div>
+                        <div class="col">
+                            <select #taska class="form-select " name="sate">
                 <option [value]="-1"> </option>
                 <option   *ngFor="let c of tasks " [value]="c.id">{{c.task}}</option>
 
               </select>
-            </div>
-          </div>
-          <div class="row" style="padding-top: 20px;">
-            <div class="col" style="  display: flex; justify-content: center; align-items: center;">
-              <button class="btn btn-outline-dark" (click)="save2(taska.value)"><i
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col" style="  display: flex; justify-content: center; align-items: center;">
+                            <button class="btn btn-outline-dark" (click)="save2(taska.value)"><i
                 class="fa fa-check"
-                aria-hidden="true"></i> Add
+                aria-hidden="true"></i> Update
               </button>
-            </div>
-            <div class="col" style="  display: flex;  justify-content: center;align-items: center;">
-              <button type="button" class="btn btn-outline-danger"
-                      (click)="closePopup2()">
+                        </div>
+                        <div class="col" style="  display: flex;  justify-content: center;align-items: center;">
+                            <button type="button" class="btn btn-outline-danger" (click)="closePopup2()">
                 <i class="fa fa-times" aria-hidden="true"></i> Cancel
               </button>
-            </div>
-          </div>
-        </form>
+                        </div>
+                    </div>
+                </form>
 
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DayService {
-  API='http://localhost:3000/days/'
+  API = 'http://localhost:3000/days/'
   constructor(private http: HttpClient) { }
-  getDays(){
+  getDays() {
     return this.http.get(`${this.API}all`)
   }
-  addTask(taskid,t){
-    return this.http.post(`${this.API}add/${taskid}`,t)
+  addTask(taskid, t) {
+    return this.http.post(`${this.API}add/${taskid}`, t)
   }
-  getdaytask(t,d,m,y){
+  getdaytask(t, d, m, y) {
     return this.http.get(`${this.API}${t}/${d}/${m}/${y}`)
   }
-  delete(id){
+  delete(id) {
     return this.http.delete(`${this.API}delete/${id}`)
   }
 }
