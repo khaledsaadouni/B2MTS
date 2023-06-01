@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {ProjectsService} from "../projects.service";
-import {LoginService} from "../login.service";
-import {Router} from "@angular/router";
-import {ProjService} from "../api/projects.service";
-import {TaskService} from "../api/task.service";
-import {DayService} from "../api/day.service";
-import {Dateapi} from "../model/dateapi";
-import {CurrentService} from "../api/current.service";
-import {AuthService} from "../api/auth.service";
+import { Component, OnInit } from '@angular/core';
+import { ProjectsService } from "../projects.service";
+import { LoginService } from "../login.service";
+import { Router } from "@angular/router";
+import { ProjService } from "../api/projects.service";
+import { TaskService } from "../api/task.service";
+import { DayService } from "../api/day.service";
+import { Dateapi } from "../model/dateapi";
+import { CurrentService } from "../api/current.service";
+import { AuthService } from "../api/auth.service";
 
 @Component({
   selector: 'app-timesheet',
@@ -32,7 +32,7 @@ export class TimesheetComponent implements OnInit {
   cur;
   user;
   list;
-  constructor( public authService: AuthService,private currentapi: CurrentService, private taskSer: TaskService, private daysApi: DayService, private projectservice: ProjectsService, private logged: LoginService, private router: Router, private ProjectApi: ProjService) {
+  constructor(public authService: AuthService, private currentapi: CurrentService, private taskSer: TaskService, private daysApi: DayService, private projectservice: ProjectsService, private logged: LoginService, private router: Router, private ProjectApi: ProjService) {
   }
 
   ngOnInit(): void {
@@ -46,12 +46,12 @@ export class TimesheetComponent implements OnInit {
       this.tasks = res
 
     })
-    this.authService.getusercurrent(sessionStorage.getItem('id')).subscribe((re)=>{this.cur=re})
+    this.authService.getusercurrent(sessionStorage.getItem('id')).subscribe((re) => { this.cur = re })
 
     this.logged.loggin();
     this.inputdate = this.Cyear + '-' + this.padTo2Digits(this.Cmonth)
     this.days = this.returndays()
-//    this.projects = this.projectservice.projects;
+    //    this.projects = this.projectservice.projects;
     this.ProjectApi.getProjects().subscribe((res) => {
       this.projects = res
     })
@@ -159,8 +159,8 @@ export class TimesheetComponent implements OnInit {
   gettotal(d) {
     let s = 0
     for (const dElement of d) {
-      if(dElement.month==this.Cmonth && dElement.year==this.Cyear)
-      s += dElement.coef
+      if (dElement.month == this.Cmonth && dElement.year == this.Cyear)
+        s += dElement.coef
     }
     return s
   }
