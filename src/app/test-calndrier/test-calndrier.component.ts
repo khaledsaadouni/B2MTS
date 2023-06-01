@@ -52,7 +52,7 @@ export class TestCalndrierComponent implements OnInit {
     this.authservice.getLoggedUser(sessionStorage.getItem('id')).subscribe((res2: any) => {
       console.log(res2.id);
       const role = res2.role;
-      if (role === 'Admin') {
+      if (role === 'Admin' || role === 'manager') {
         this.taskSerice.getTasks().subscribe((res) => {
           this.tasks = res
         })
@@ -132,7 +132,7 @@ export class TestCalndrierComponent implements OnInit {
     this.authservice.getLoggedUser(sessionStorage.getItem('id')).subscribe((res2: any) => {
       console.log(res2.id);
       const role = res2.role;
-      if (role === 'Admin') {
+      if (role === 'admin' || role === 'manager') {
         setTimeout(() => {
           return this.taskDayTimeService.getAllTaskDayTime().subscribe((res: any) => {
             console.log(res);
